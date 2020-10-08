@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Timetracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="fh5co-loader"></div>
+  
+    <div id="page">
+      <nav class="fh5co-nav" role="navigation">
+        <div class="container-wrap">
+          <div class="top-menu">
+            <div class="row">
+              <div class="col-xs-2">
+                <div id="fh5co-logo"><a href="index.html">WT Lite</a></div>
+              </div>
+              <div class="col-xs-10 text-right menu-1">
+                <ul>
+                  <li class="active"><a href="index.html">Home</a></li>
+                  <li class="has-dropdown">
+                    <a href="blog.html">Months</a>
+                    <ul class="dropdown">
+                      <% Log.months.each do |month| %>
+                        <li><%= link_to month, home_path %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                  <li><%= link_to 'Sync', sync_path, remote: true %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <%= yield %>
+    </div>
+  </body>
+</html>

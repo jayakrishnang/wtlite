@@ -1,0 +1,2 @@
+class TrackerFile < ApplicationRecord
+end

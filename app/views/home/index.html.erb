@@ -1,0 +1,55 @@
+<div class="container-wrap">
+  <div id="fh5co-counter" class="fh5co-counters">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 text-center animate-box">
+        <p>Total time calculated from the exported files from tracker.</p>
+        </div>
+    </div>
+    <div class="row animate-box">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="row">
+          <div class="col-md-3 text-center">
+            <span class="fh5co-counter js-counter" data-from="0" data-to="<%= Log.last_month.summary %>" data-speed="500" data-refresh-interval="10"></span>
+            <span class="fh5co-counter-label">Total Hours In Last Month</span>
+          </div>
+          <div class="col-md-3 text-center">
+            <span class="fh5co-counter js-counter" data-from="0" data-to="<%= Log.this_month.summary %>" data-speed="500" data-refresh-interval="10"></span>
+            <span class="fh5co-counter-label">Total Hours In This Month</span>
+          </div>
+          <div class="col-md-3 text-center">
+            <span class="fh5co-counter js-counter" data-from="0" data-to="<%= Log.this_week.summary %>" data-speed="500" data-refresh-interval="10"></span>
+            <span class="fh5co-counter-label">Total Hours In This Week</span>
+          </div>
+          <div class="col-md-3 text-center">
+            <span class="fh5co-counter js-counter" data-from="0" data-to="<%= Log.today.summary %>" data-speed="500" data-refresh-interval="10"></span>
+            <span class="fh5co-counter-label">Total Hours Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-wrap">
+  <div id="fh5co-about">
+      <div class="row animate-box">
+        <div class="col-md-12 text-center heading-section">
+          <% @logs.group_by{ |l| l.log_date.day }.each do |day, logs| %>
+            <h3>October <%= day %></h3>
+            <% logs.each do |log| %>
+              <div class="row">
+                <div class="col-md-2 text-center"><p>#<%= log.story.uid %></p></div>
+                <div class="col-md-8 text-center"><p><%= link_to log.story.title, log.story.url %></p></div>
+                <div class="col-md-2 text-center"><p><%= log.time.format %></p></div>
+              </div>
+            <% end %>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center"><h5>TOTAL</h5></div>
+                <div class="col-md-2 text-center"><h5><%= logs.map(&:time).sum.format %></h5></div>
+              </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  story: one
+  log_date: 2020-10-07
+  time: 9.99
+
+two:
+  story: two
+  log_date: 2020-10-07
+  time: 9.99
